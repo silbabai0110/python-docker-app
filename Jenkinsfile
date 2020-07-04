@@ -9,7 +9,7 @@ node {
      def myTestContainer = docker.image('qnib/pytest')
      myTestContainer.pull()
      myTestContainer.inside {
-       sh 'py.test'
+       sh 'py.test test_python_docker_app.py'
      }
    }                                   
    stage('docker build/push') {            
