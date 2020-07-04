@@ -1,14 +1,15 @@
 from flask import Flask
+
 app = Flask(__name__)
 
 
 @app.route('/')
-def hello():
+def index():
     return "Hello World!"
 
 
 @app.route('/<name>')
-def hello_name(name):
+def index_name(name):
     return "Hello {}!".format(name)
 
 if __name__ == '__main__':
