@@ -14,7 +14,7 @@ node {
      }
    }                                   
    stage('docker build/push') {            
-     docker.withRegistry('https://index.docker.io/v1/', 'dockerhub_creds') {
+     docker.withRegistry('https://hub.docker.com', 'dockerhub_creds') {
        def app = docker.build("silbabai0110/python-docker-app:${commit_id}", '.').push()
      }                                     
    }                                       
