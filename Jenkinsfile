@@ -6,8 +6,11 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test') {
-       sh 'pip install -r requirements.txt'
+     def myTestContainer = docker.image('qnib/pytest')
+     myTestContainer.pull()
+     myTestContainer.inside {
        sh 'py.test'
+     }
    }                                   
    stage('docker build/push') {            
      docker.withRegistry('https://hub.docker.com', 'dockerhub_creds') {
