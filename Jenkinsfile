@@ -6,12 +6,8 @@ node {
      commit_id = readFile('.git/commit-id').trim()
    }
    stage('test') {
-     def myTestContainer = docker.image('python:alpine3.7')
-     myTestContainer.pull()
-     myTestContainer.inside {
-       sh 'pip install -r requirements.txt -t /tmp/'
+       sh 'pip install -r requirements.txt'
        sh 'py.test'
-     }
    }                                   
    stage('docker build/push') {            
      docker.withRegistry('https://hub.docker.com', 'dockerhub_creds') {
