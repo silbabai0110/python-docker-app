@@ -9,8 +9,11 @@ node {
      def myTestContainer = docker.image('python:alpine3.7')
      myTestContainer.pull()
      myTestContainer.inside {
+	   sh 'python3 -m venv env'
+	   sh 'source env/bin/activate'
        sh 'pip install -r requirements.txt'
        sh 'py.test'
+	   sh 'deactivate'
      }
    }                                   
    stage('docker build/push') {            
