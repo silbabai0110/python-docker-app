@@ -9,7 +9,7 @@ node {
      def myTestContainer = docker.image('python:alpine3.7')
      myTestContainer.pull()
      myTestContainer.inside {
-       sh 'pip install -r requirements.txt -t .'
+       sh 'sudo -H pip install -r requirements.txt -t .'
        sh 'py.test'
      }
    }                                   
