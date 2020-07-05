@@ -2,7 +2,10 @@ pipeline {
     agent none
     stages {
 		stage('Preparation') {
-			checkout scm
+			steps {
+				checkout scm
+			}
+
 		}
         stage('Test') {
             agent {
