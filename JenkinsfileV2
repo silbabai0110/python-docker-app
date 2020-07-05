@@ -20,13 +20,14 @@ pipeline {
                 sh 'py.test test_python_docker_app.py'
             }
         }
-        stage('Deliver') {
-            steps {
+		node {
+		    stage('Deliver') {
 				docker.withRegistry('https://index.docker.io/v1/', 'dockerhub_creds') {
 				def app = docker.build("silbabai0110/python-docker-app:${commit_id}", '.').push()
 				}
-			}
+			}	
+		
 		}
-	
+
 	}
 }
